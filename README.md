@@ -40,6 +40,7 @@ Features
    - If you want to resize the cloud image storage so you can have more space
    - It lets you set the number of cores and memory for the Virtual Machine
    - Asks if you want it to install qemu-guest-agent (see Proxmox's wiki for more infomation) - Great to have out of the box from the Admin side of Proxmox
+   - Added the option to start after creation or not to start
    - Asks what Proxmox node to have the VM running after all is complete
    - Makes it simple to learn some of the CLI of proxmox (by reviewing the script) and some awesome built in featues of Proxmox to get things up and running fast and easily
  Cloud Images currently available with this script
