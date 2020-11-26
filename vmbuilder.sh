@@ -455,13 +455,33 @@ else
  NODESYESNO=n
 fi
 echo
+while true
+do
+ read -r -p "PROTECT VM [Y/n]: " PROTECTVM
+
+ case $PROTECTVM in
+     [yY][eE][sS]|[yY])
+ break
+ ;;
+     [nN][oO]|[nN])
+ break
+        ;;
+     *)
+ echo "INVALID INPUT, PLEASE ENTER [Y/n]"
+ ;;
+ esac
+done
+echo
 echo
 echo "Please select the cloud image you would like to use"
 PS3='Select an option and press Enter: '
-options=("Ubuntu Focal 20.04 Cloud Image" "Ubuntu Minimal Focal 20.04 Cloud Image" "CentOS 7 Cloud Image" "Debian 10 Cloud Image" "Debian 9 Cloud Image" "Ubuntu 18.04 Bionic Image" "CentOS 8 Cloud Image" "Fedora 32 Cloud Image" "Rancher OS Cloud Image")
+options=("Ubuntu Groovy 20.10 Cloud Image" "Ubuntu Focal 20.04 Cloud Image" "Ubuntu Minimal Focal 20.04 Cloud Image" "CentOS 7 Cloud Image" "Debian 10 Cloud Image" "Debian 9 Cloud Image" "Ubuntu 18.04 Bionic Image" "CentOS 8 Cloud Image" "Fedora 32 Cloud Image" "Rancher OS Cloud Image")
 select osopt in "${options[@]}"
 do
   case $osopt in
+        "Ubuntu Groovy 20.10 Cloud Image")
+          [ -f "$isostorage/groovy-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/daily/server/groovy/current/groovy-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
+          ;;
         "Ubuntu Focal 20.04 Cloud Image")
           [ -f "$isostorage/focal-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
           ;;
@@ -497,7 +517,10 @@ echo "You have selected Cloud Image $osopt"
 echo
 
 # setting the Cloud Image for later for qm info
-if [ "$osopt" == "Ubuntu Focal 20.04 Cloud Image" ];
+if [ "$osopt" == "Ubuntu Groovy 20.10 Cloud Image" ];
+then
+   cloudos=$isostorage'groovy-server-cloudimg-amd64-disk-kvm.img'
+elif [ "$osopt" == "Ubuntu Focal 20.04 Cloud Image" ];
 then
    cloudos=$isostorage'focal-server-cloudimg-amd64-disk-kvm.img'
 elif [ "$osopt" == "Ubuntu Minimal Focal 20.04 Cloud Image" ];
@@ -601,8 +624,40 @@ then
     qm resize $VMID scsi0 +"$ADDDISKSIZE"G
 fi
 
+if [[ "$PROTECTVM" =~ ^[Yy]$ || "$PROTECTVM" =~ ^[yY][eE][sS] ]]
+then
+    qm set "$VMID" --protection 1
+else
+    qm set "$VMID" --protection 0
+fi
+
 # Setting the cloud-init user information
 qm set $VMID --cicustom "user=$snipstorage:snippets/$VMID.yaml"
+
+echo
+while true
+do
+ read -r -p "Do you want to turn this into a TEMPLATE VM [Y/n]: " TEMPLATEVM
+
+ case "$TEMPLATEVM" in
+     [yY][eE][sS]|[yY])
+ break
+ ;;
+     [nN][oO]|[nN])
+ break
+        ;;
+     *)
+ echo "INVALID INPUT, PLEASE ENTER [Y/n]"
+ ;;
+ esac
+done
+
+if [[ "$TEMPLATEVM" =~ ^[Yy]$ || "$TEMPLATEVM" =~ ^[yY][eE][sS] ]]
+then
+    qm template "$VMID"
+    echo "You can now use this as a template"
+    exit 0
+fi
 
 ## Start the VM after Creation!!!!
 if [[ $AUTOSTART =~ ^[Yy]$ || $AUTOSTART =~ ^[yY][eE][sS] ]]

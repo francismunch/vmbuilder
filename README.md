@@ -54,7 +54,11 @@ Features
    - Rancher OS
    - Fedora 32
    - More to come or request one to be added to this script
-  
+
+ Added 11/26/2020
+   - Option to enable protection on the VM
+   - Option to turn it into a template
+   - Added Ubuntu Groovy 20.10 Cloud Image as an option  
   
   
  Future things for the script
