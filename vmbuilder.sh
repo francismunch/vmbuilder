@@ -44,13 +44,15 @@ function get_vmidnumber() {
     read -p "${1} New VM ID number: " number
     if [[ " ${all[*]} " != *" ${number} "* ]]
     then
-        VMID=$number
+        VMID=${number:-$vmidnext}
     else
         get_vmidnumber 'Enter a different number because either you are using it or reserved by the sysem'
     fi
 }
-echo "Enter desired VM ID number (next availabe is $vmidnext) "
+echo "Enter desired VM ID number or press enter to accept default of $vmidnext: "
 get_vmidnumber ''
+
+echo "The VM number will be $VMID"
 
 echo
 read -p "Enter desired VM username: " USER

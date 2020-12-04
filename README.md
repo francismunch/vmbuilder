@@ -60,7 +60,9 @@ Features
    - Option to turn it into a template
    - Added Ubuntu Groovy 20.10 Cloud Image as an option  
   
-  
+ Added 12/04/2020
+   - Option to just hit enter on VMID number and accept default  
+
  Future things for the script
   
     - Add an option to use IPV6 or IPV4
