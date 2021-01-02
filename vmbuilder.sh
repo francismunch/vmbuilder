@@ -459,7 +459,7 @@ fi
 echo
 while true
 do
- read -r -p "PROTECT VM [Y/n]: " PROTECTVM
+ read -r -p "Do you want VM protection enabled[Y/n]: " PROTECTVM
 
  case $PROTECTVM in
      [yY][eE][sS]|[yY])
@@ -632,6 +632,9 @@ then
 else
     qm set "$VMID" --protection 0
 fi
+
+# Disabling tablet mode, usually is enabled but don't need it
+qm set $VMID --tablet 0
 
 # Setting the cloud-init user information
 qm set $VMID --cicustom "user=$snipstorage:snippets/$VMID.yaml"

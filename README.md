@@ -55,14 +55,19 @@ Features
    - Fedora 32
    - More to come or request one to be added to this script
 
+ Added 01/02/2020
+   - Tablet pointer is disabled by default
+   - Cleaned up some of the wording
+   - Working on VMBR choices - hopefully in a day or two I will have that option avail
+   
+ Added 12/04/2020
+   - Option to just hit enter on VMID number and accept default
+
  Added 11/26/2020
    - Option to enable protection on the VM
    - Option to turn it into a template
    - Added Ubuntu Groovy 20.10 Cloud Image as an option  
   
- Added 12/04/2020
-   - Option to just hit enter on VMID number and accept default  
-
  Future things for the script
   
     - Add an option to use IPV6 or IPV4
