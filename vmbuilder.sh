@@ -186,6 +186,33 @@ echo "The snippet storage path of the user.yaml file will be" $snippetstorage
 echo "The storage for snippets being used is" $snipstorage
 echo
 
+#Checking to see what VMBR interface you want to use
+echo
+echo "Please select VMBR to use for your network"
+declare -a vmbrs=$(awk '{if(/vmbr/) print $2}' /etc/network/interfaces)
+declare -a vmbrsavail=( $(printf "%s\n" "${vmbrs[@]}" | sort -u) )
+
+cnt=${#vmbrsavail[@]}
+for (( i=0;i<cnt;i++)); do
+    vmbrsavail[i]="${vmbrsavail[i]}"
+done
+total_num_vmbrs=${#vmbrsavail[@]}
+vmbrsavail2=$( echo ${vmbrsavail[@]} )
+
+select option in $vmbrsavail2; do
+if [ 1 -le "$REPLY" ] && [ "$REPLY" -le $total_num_vmbrs ];
+then
+        vmbrused=$option
+        break;
+else
+        echo "Incorrect Input: Select a number 1-$total_num_vmbrs"
+fi
+done
+
+echo "Your network bridge will be on " $vmbrused
+echo
+echo
+
 #VLAN information block
 while true
 do
@@ -583,9 +610,9 @@ qm create $VMID --name $NEWHOSTNAME --cores $CORES --onboot 1 --memory $MEMORY -
 
 if [[ $VLANYESORNO =~ ^[Yy]$ || $VLANYESORNO =~ ^[yY][eE][sS] ]]
 then
-    qm set $VMID --net0 virtio,bridge=vmbr0,tag=$VLAN
+    qm set $VMID --net0 virtio,bridge=$vmbrused,tag=$VLAN
 else
-    qm set $VMID --net0 virtio,bridge=vmbr0
+    qm set $VMID --net0 virtio,bridge=$vmbrused
 fi
 
 # import the downloaded disk to local-lvm storage

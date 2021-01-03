@@ -55,7 +55,10 @@ Features
    - Fedora 32
    - More to come or request one to be added to this script
 
- Added 01/02/2020
+ Added 01/03/2021
+   - Can now select which VMBR to use
+
+ Added 01/02/2021
    - Tablet pointer is disabled by default
    - Cleaned up some of the wording
    - Working on VMBR choices - hopefully in a day or two I will have that option avail
