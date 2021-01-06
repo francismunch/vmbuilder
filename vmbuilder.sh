@@ -202,6 +202,8 @@ vmbrsavail2=$( echo ${vmbrsavail[@]} )
 select option in $vmbrsavail2; do
 if [ 1 -le "$REPLY" ] && [ "$REPLY" -le $total_num_vmbrs ];
 then
+#        echo "The selected option is $REPLY"
+#        echo "The selected storage is $option"
         vmbrused=$option
         break;
 else
@@ -221,7 +223,14 @@ do
  case $VLANYESORNO in
      [yY][eE][sS]|[yY])
  echo
- read -p "Enter desired VLAN number for the VM: " VLAN
+ while true
+ do
+  read -p "Enter desired VLAN number for the VM: " VLAN
+  if [[ $VLAN -ge 0 ]] && [[ $VLAN -le 4096 ]]
+  then
+     break
+  fi
+ done
  echo
  break
  ;;

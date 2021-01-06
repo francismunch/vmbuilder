@@ -55,6 +55,9 @@ Features
    - Fedora 32
    - More to come or request one to be added to this script
 
+ Added 01/06/2021
+   - Can now only select VLANS between 0 and 4096
+
  Added 01/03/2021
    - Can now select which VMBR to use
 
