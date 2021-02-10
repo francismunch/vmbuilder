@@ -55,6 +55,13 @@ Features
    - Fedora 32
    - More to come or request one to be added to this script
 
+ Added 2/10/2021
+   - VM's now have a default VGA set to QXL
+   - VM's now have the machine set to q35
+   - Took out asking for password several times
+   - Took out some un-needed things that were pointed out
+   - Working on removing a few more things that are really not needed
+
  Added 01/06/2021
    - Can now only select VLANS between 0 and 4096
 
