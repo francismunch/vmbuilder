@@ -24,7 +24,7 @@ while true; do
    fi
 done
 echo
-#echo "*** Taking a 5-7 seconds to gather information ***"
+echo "*** Taking a 5-7 seconds to gather information ***"
 echo
 #Picking VM ID number
 vmidnext=$(pvesh get /cluster/nextid)
@@ -57,21 +57,20 @@ echo "The VM number will be $VMID"
 echo
 read -p "Enter desired VM username: " USER
 echo
-#while true; do
-#    read -s -p "Please enter password for the user: " PASSWORD
- #   echo
- #   read -s -p "Please repeat password for the user: " PASSWORD1
-#    echo
- #   [ "$PASSWORD" = "$PASSWORD1" ] && break
-  #  echo
-   # echo "Please try again passwords did not match"
- #   echo
-#done
+while true; do
+    read -s -p "Please enter password for the user: " PASSWORD
+    echo
+    read -s -p "Please repeat password for the user: " PASSWORD1
+    echo
+    [ "$PASSWORD" = "$PASSWORD1" ] && break
+    echo
+    echo "Please try again passwords did not match"
+    echo
+done
 echo
 # really just hashing the password so its not in plain text in the usercloud.yaml
 # that is being created during the process
 # really should do keys for most secure
-echo "Enter a password"
 kindofsecure=$(openssl passwd -1 -salt SaltSalt $PASSWORD)
 
 ## Selecting the Storage th VM will run on
@@ -626,6 +625,7 @@ else
 fi
 
 # import the downloaded disk to local-lvm storage
+
 if [[ $vmstorage == "local" ]]
 then
    qm importdisk $VMID $cloudos $vmstorage -format qcow2
@@ -671,12 +671,6 @@ fi
 
 # Disabling tablet mode, usually is enabled but don't need it
 qm set $VMID --tablet 0
-
-qm set $VMID --vga qxl
-qm set $VMID --machine q35
-#qm set $VMID --bios ovmf
-#qm set $VMID --efidisk0 $vmstorage:0
-
 
 # Setting the cloud-init user information
 qm set $VMID --cicustom "user=$snipstorage:snippets/$VMID.yaml"
