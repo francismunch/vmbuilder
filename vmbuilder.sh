@@ -625,19 +625,13 @@ else
 fi
 
 # import the downloaded disk to local-lvm storage
-
 if [[ $vmstorage == "local" ]]
 then
    qm importdisk $VMID $cloudos $vmstorage -format qcow2
-else
-   qm importdisk $VMID $cloudos $vmstorage
-fi
-
-if [[ $vmstorage == "local" ]]
-then
    qm set $VMID --scsihw virtio-scsi-pci --scsi0 /var/lib/vz/images/$VMID/vm-$VMID-disk-0.qcow2,discard=on
 else
-   qm set $VMID --scsihw virtio-scsi-pci --scsi0 $vmstorage:vm-$VMID-disk-0,discard=on
+   qm importdisk $VMID $cloudos $vmstorage -format qcow2
+   qm set $VMID --scsihw virtio-scsi-pci --scsi0 $vmstorage:$VMID/vm-$VMID-disk-0.qcow2,discard=on
 fi
 
 # cd drive for cloudinit info
