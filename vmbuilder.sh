@@ -517,6 +517,9 @@ options=("Ubuntu Groovy 20.10 Cloud Image" "Ubuntu Focal 20.04 Cloud Image" "Ubu
 select osopt in "${options[@]}"
 do
   case $osopt in
+        "Ubuntu Hirsute Hippo 21.04 Cloud Image")
+          [ -f "$isostorage/hirsute-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/hirsute/current/hirsute-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
+          ;;
         "Ubuntu Groovy 20.10 Cloud Image")
           [ -f "$isostorage/groovy-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/daily/server/groovy/current/groovy-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
           ;;
@@ -555,7 +558,10 @@ echo "You have selected Cloud Image $osopt"
 echo
 
 # setting the Cloud Image for later for qm info
-if [ "$osopt" == "Ubuntu Groovy 20.10 Cloud Image" ];
+if [ "$osopt" == "Ubuntu Hirsute Hippo 21.04 Cloud Image" ];
+then
+   cloudos=$isostorage'hirsute-server-cloudimg-amd64-disk-kvm.img'
+elif [ "$osopt" == "Ubuntu Groovy 20.10 Cloud Image" ];
 then
    cloudos=$isostorage'groovy-server-cloudimg-amd64-disk-kvm.img'
 elif [ "$osopt" == "Ubuntu Focal 20.04 Cloud Image" ];
