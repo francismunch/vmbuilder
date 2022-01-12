@@ -5,7 +5,7 @@ README
 
 This script still works in a new proxmox environment.  If there are issues you have please opne an issue and I will look into it.  Also make sure you have snippets setup becuase that appears to be a common issue when running the script, so make snippets are setup in proxmox or issues will arise.  I will look into updating the cloud images avaiable.
 
-I did find a problem with cloud-init and I am working on resolving it.  It has been broken since PVE 7.  There is a solution to fixing it to let it run with the snippets you put in from the script.  Just make sure to not select start after creation and then go into the cloud-init selection of the VM you created and just click regenerate image and then click start and it will work just fine!  I will still try to find a better way to make it work without this workaround, but at least it is usable still!
+So I had to update to remove autostart after creation, because it was creating issues with the custom cloud-init from the script.  I don't know why but I am looking into it.  Now after creating the VM you should just be able to click start and after boot up and all that your custom values from the script should be usuable like the username and password.
 
 *****************************
 
