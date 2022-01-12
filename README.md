@@ -1,5 +1,13 @@
 README
 
+
+** January 12th, 2022 **
+
+This script still works in a new proxmox environment.  If there are issues you have please opne an issue and I will look into it.  Also make sure you have snippets setup becuase that appears to be a common issue when running the script, so make snippets are setup in proxmox or issues will arise.  I will look into updating the cloud images avaiable.
+
+*****************************
+
+
 Proxmox Virtual Machine Builder with Cloud Images
 
 You can have a virtual machine created and booted with the information you set within two minutes. Auto downloads the cloud image if you need it and once all the information is set it auto starts it for you.
