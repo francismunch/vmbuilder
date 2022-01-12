@@ -413,26 +413,28 @@ do
 done
 
 echo
-while true
-do
- read -r -p "Do you want the VM to autostart after you create it here? (Enter Y/n)? " AUTOSTARTS
 
- case $AUTOSTARTS in
-     [yY][eE][sS]|[yY])
- echo
- AUTOSTART=yes
- break
- ;;
-     [nN][oO]|[nN])
- AUTOSTART=no
- echo
- break
-        ;;
-     *)
- echo "Invalid input, please enter Y/N or yes/no"
- ;;
- esac
-done
+#while true
+#do
+# read -r -p "Do you want the VM to autostart after you create it here? (Enter Y/n)? " AUTOSTARTS
+#
+# case $AUTOSTARTS in
+#     [yY][eE][sS]|[yY])
+# echo
+# AUTOSTART=yes
+# break
+# ;;
+#     [nN][oO]|[nN])
+#AUTOSTART=no
+# echo
+# break
+#        ;;
+#     *)
+# echo "Invalid input, please enter Y/N or yes/no"
+# ;;
+# esac
+#done
+
 echo
 # This block of code is for picking which node to have the VM on.
 # Couple things it creates the VM on the current node, then migrate's
