@@ -5,6 +5,8 @@ README
 
 This script still works in a new proxmox environment.  If there are issues you have please opne an issue and I will look into it.  Also make sure you have snippets setup becuase that appears to be a common issue when running the script, so make snippets are setup in proxmox or issues will arise.  I will look into updating the cloud images avaiable.
 
+I did find a problem with cloud-init and I am working on resolving it.  It has been broken since PVE 7.
+
 *****************************
 
 
