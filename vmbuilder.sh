@@ -593,7 +593,8 @@ then
 elif [ "$osopt" == "Fedora 32 Cloud Image" ];
 then
    cloudos=$isostorage'Fedora-Cloud-Base-32-1.6.x86_64.qcow2'
-else [ "$osopt" == "Rancher OS Cloud Image" ];
+elif [ "$osopt" == "Rancher OS Cloud Image" ];
+then   
    cloudos=$isostorage'rancheros-openstack.img'
 else [ "$osopt" == "Ubuntu Jammy 22.04 Cloud Image" ];
    cloudos=$isostorage'jammy-server-cloudimg-amd64-disk-kvm.img'
