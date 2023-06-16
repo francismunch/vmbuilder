@@ -16,7 +16,7 @@ echo
 # Going to ask questions for VM number, hostname, vlan tag
 echo
 while true; do
-   read -r -p "Enter desired hostname for the Virutal Machine: " NEWHOSTNAME
+   read -r -p "Enter desired hostname for the Virtual Machine: " NEWHOSTNAME
    if [[ ! $NEWHOSTNAME == *['!'@#\$%^\&*()\_+\']* ]];then
       break;
    else
@@ -519,6 +519,9 @@ options=("Ubuntu Hirsute Hippo 21.04 Cloud Image" "Ubuntu Groovy 20.10 Cloud Ima
 select osopt in "${options[@]}"
 do
   case $osopt in
+        "Ubuntu Jammy 22.04 Cloud Image")
+          [ -f "$isostorage/jammy-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
+          ;;
         "Ubuntu Hirsute Hippo 21.04 Cloud Image")
           [ -f "$isostorage/hirsute-server-cloudimg-amd64-disk-kvm.img" ] && echo && echo "Moving on you have this cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud-images.ubuntu.com/hirsute/current/hirsute-server-cloudimg-amd64-disk-kvm.img -P $isostorage && break
           ;;
@@ -592,6 +595,8 @@ then
    cloudos=$isostorage'Fedora-Cloud-Base-32-1.6.x86_64.qcow2'
 else [ "$osopt" == "Rancher OS Cloud Image" ];
    cloudos=$isostorage'rancheros-openstack.img'
+else [ "$osopt" == "Ubuntu Jammy 22.04 Cloud Image" ];
+   cloudos=$isostorage'jammy-server-cloudimg-amd64-disk-kvm.img'
 fi
 echo
 
