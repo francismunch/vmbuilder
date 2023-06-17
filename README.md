@@ -58,7 +58,7 @@ Features
    - CentOS 8
    - Debian 12
    - Debian 11
-   - Ubuntu Bionic 18.04
+   - Arch Linux
    - Rancher OS
    - Fedora 32
    - More to come or request one to be added to this script
