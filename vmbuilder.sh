@@ -516,7 +516,7 @@ echo
 echo
 echo "Please select the cloud image you would like to use"
 PS3='Select an option and press Enter: '
-options=("Ubuntu Jammy 22.04 Cloud Image" "Ubuntu Lunar 23.04 Cloud Image" "Arch Linux Cloud Image" "Ubuntu Focal 20.04 Cloud Image" "Ubuntu Minimal Focal 20.04 Cloud Image" "CentOS 7 Cloud Image" "Debian 12 Cloud Image" "Debian 11 Cloud Image" "Ubuntu 18.04 Bionic Image" "CentOS 8 Cloud Image" "Fedora 32 Cloud Image" "Rancher OS Cloud Image")
+options=("Ubuntu Jammy 22.04 Cloud Image" "Ubuntu Lunar 23.04 Cloud Image" "Arch Linux Cloud Image" "Ubuntu Focal 20.04 Cloud Image" "Ubuntu Minimal Focal 20.04 Cloud Image" "CentOS 7 Cloud Image" "Debian 12 Cloud Image" "Debian 11 Cloud Image" "Ubuntu 18.04 Bionic Image" "CentOS 8 Cloud Image" "Fedora 38 Cloud Image" "Rancher OS Cloud Image")
 select osopt in "${options[@]}"
 do
   case $osopt in
@@ -550,8 +550,8 @@ do
         "CentOS 8 Cloud Image")
           [ -f "$isostorage/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2" ] && echo && echo "Moving on you have his cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2 -P $isostorage && break
           ;;
-        "Fedora 32 Cloud Image")
-          [ -f "$isostorage/Fedora-Cloud-Base-32-1.6.x86_64.qcow2" ] && echo && echo "Moving on you have his cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://download.fedoraproject.org/pub/fedora/linux/releases/32/Cloud/x86_64/images/Fedora-Cloud-Base-32-1.6.x86_64.qcow2 -P $isostorage && break
+        "Fedora 38 Cloud Image")
+          [ -f "$isostorage/Fedora-Cloud-Base-38-1.6.x86_64.qcow2" ] && echo && echo "Moving on you have his cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://download.fedoraproject.org/pub/fedora/linux/releases/38/Cloud/x86_64/images/Fedora-Cloud-Base-38-1.6.x86_64.qcow2 -P $isostorage && break
           ;;
         "Rancher OS Cloud Image")
           [ -f "$isostorage/rancheros-openstack.img" ] && echo && echo "Moving on you have his cloud image" && break || echo && echo "You do not have this cloud image file so we are downloading it now" && echo && wget https://github.com/rancher/os/releases/download/v1.5.5/rancheros-openstack.img -P $isostorage && break
@@ -588,9 +588,9 @@ then
 elif [ "$osopt" == "CentOS 8 Cloud Image" ];
 then
    cloudos=$isostorage'CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2'
-elif [ "$osopt" == "Fedora 32 Cloud Image" ];
+elif [ "$osopt" == "Fedora 38 Cloud Image" ];
 then
-   cloudos=$isostorage'Fedora-Cloud-Base-32-1.6.x86_64.qcow2'
+   cloudos=$isostorage'Fedora-Cloud-Base-38-1.6.x86_64.qcow2'
 elif [ "$osopt" == "Rancher OS Cloud Image" ];
 then   
    cloudos=$isostorage'rancheros-openstack.img'
