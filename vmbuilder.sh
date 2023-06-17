@@ -7,6 +7,7 @@ echo "# This will automate so much and make it so easy to spin up a VM machine f
 echo "# A VM Machine typically will be spun up and ready in less then 3 minutes."
 echo "#"
 echo "# Written by Francis Munch"
+echo "# Updated and maintained by MinerAle00"
 echo "# email: francismunch@tuta.io"
 echo "# github: https://github.com/francismunch/vmbuilder"
 echo "###"
