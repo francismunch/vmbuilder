@@ -15,14 +15,14 @@ Questo script può essere utilizzato dai principianti che non conoscono ancora m
 
 
 Come utilizzare lo script
-  
+```  
    1) Scarica lo script vmbuilder.sh da questa repository nel tuo nodo di proxmox
    2) Esegui chmod +x vmbuilder.sh
    3) Se utilizzi le chiavi ssh devi conoscere la cartella
    4) Assicurati che gli snippets siano abilitati nel tuo storage. Nella GUI di Proxmox vai su Datacenter, Storage e puoi vedere se sono abilitati o no.
    5) Esegui lo script con ./vmbuilder.sh
    6) Segui quello che ti dice lo script e sei pronto ad avere la tua macchina virtuale in pochissimo tempo!
-
+```
 
 
 Features
